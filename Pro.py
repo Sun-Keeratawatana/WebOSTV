@@ -1,6 +1,6 @@
 from pylgtv import WebOsClient
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QFont, QPainter, QBrush, QColor
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import logging
@@ -241,6 +241,18 @@ class MyWindow(QMainWindow):
     def power_clicked(self):
         self.webos_client.power_off()
 
+    def pause_clicked(self):
+        self.webos_client.pause()
+    
+    def play_clicked(self):
+        self.webos_client.play()
+
+    def rewind_clicked(self):
+        self.webos_client.rewind()
+    
+    def forward_clicked(self):
+        self.webos_client.fast_forward()
+
     def appid(self, x):
 
         if x == "netflix":
@@ -290,7 +302,7 @@ class MyWindow(QMainWindow):
 
         self.label = QtWidgets.QLabel(self)
         self.label.setText("Status Label")
-        self.label.move(100,700)
+        self.label.move(100,900)
 
         self.bPower = QtWidgets.QPushButton(self)
         self.bPower.setGeometry(20,0,90,90)
@@ -413,6 +425,27 @@ class MyWindow(QMainWindow):
         self.bMute.setGeometry(100,630,55,55)
         self.bMute.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioMute.jpg);")
         self.bMute.clicked.connect(self.mute_clicked)
+
+        self.brewind = QtWidgets.QPushButton(self)
+        self.brewind.setGeometry(20,740,50,50)
+        self.brewind.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/rewind.png);")
+        self.brewind.clicked.connect(self.rewind_clicked)
+
+        self.bplay = QtWidgets.QPushButton(self)
+        self.bplay.setGeometry(170,740,50,50)
+        self.bplay.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/play.png);")
+        self.bplay.clicked.connect(self.play_clicked)
+
+        self.bpause = QtWidgets.QPushButton(self)
+        self.bpause.setGeometry(90,740,50,50)
+        self.bpause.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/pause.png);")
+        self.bpause.clicked.connect(self.pause_clicked)
+
+        self.bforward = QtWidgets.QPushButton(self)
+        self.bforward.setGeometry(240,740,50,50)
+        self.bforward.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/ff.jpg);")
+        self.bforward.clicked.connect(self.forward_clicked)
+
 
     def update(self):
         self.label.adjustSize()
