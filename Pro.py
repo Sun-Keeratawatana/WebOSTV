@@ -1,6 +1,6 @@
 from pylgtv import WebOsClient
 from PyQt5 import QtWidgets
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QPainter, QBrush, QColor
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 import logging
@@ -286,135 +286,133 @@ class MyWindow(QMainWindow):
         
         self.setGeometry(0, 0, 300, 1000)
         self.setWindowTitle("Remote")
-        #self.setStyleSheet("background-color: black")
+        self.setStyleSheet("background-color: white")
 
         self.label = QtWidgets.QLabel(self)
         self.label.setText("Status Label")
-        self.label.move(50,600)
+        self.label.move(100,700)
+
+        self.bPower = QtWidgets.QPushButton(self)
+        self.bPower.setGeometry(20,0,90,90)
+        self.bPower.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/power.png);")
+        self.bPower.clicked.connect(self.power_clicked)
+
+        
+        self.bInput = QtWidgets.QPushButton(self)
+        self.bInput.setGeometry(180,5,80,80)
+        self.bInput.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/input.png);")
+        self.bInput.clicked.connect(self.detectInput)
 
         self.b1 = QtWidgets.QPushButton(self)
-        self.b1.setGeometry(0,0,90,90)
+        self.b1.setGeometry(0,100,80,80)
         self.b1.setText("1")
         self.b1.setFont(QFont('Ariel', 30))
         self.b1.clicked.connect(self.one_clicked)
 
         self.b2 = QtWidgets.QPushButton(self)
-        self.b2.setGeometry(100,0,90,90)
+        self.b2.setGeometry(100,100,80,80)
         self.b2.setText("2")
         self.b2.setFont(QFont('Ariel', 30))
         self.b2.clicked.connect(self.two_clicked)
 
         self.b3 = QtWidgets.QPushButton(self)
-        self.b3.setGeometry(200,0,90,90)
+        self.b3.setGeometry(200,100,80,80)
         self.b3.setText("3")
         self.b3.setFont(QFont('Ariel', 30))
         #self.b3.setStyleSheet("background-color: black")
         self.b3.clicked.connect(self.three_clicked)
 
         self.b4 = QtWidgets.QPushButton(self)
-        self.b4.setGeometry(0,100,90,90)
+        self.b4.setGeometry(0,200,80,80)
         self.b4.setText("4")
         self.b4.setFont(QFont('Ariel', 30))
         self.b4.clicked.connect(self.four_clicked)
 
         self.b5 = QtWidgets.QPushButton(self)
-        self.b5.setGeometry(100,100,90,90)
+        self.b5.setGeometry(100,200,80,80)
         self.b5.setText("5")
         self.b5.setFont(QFont('Ariel', 30))
         self.b5.clicked.connect(self.five_clicked)
 
         self.b6 = QtWidgets.QPushButton(self)
-        self.b6.setGeometry(200,100,90,90)
+        self.b6.setGeometry(200,200,80,80)
         self.b6.setText("6")
         self.b6.setFont(QFont('Ariel', 30))
         self.b6.clicked.connect(self.six_clicked)
 
         self.b7 = QtWidgets.QPushButton(self)
-        self.b7.setGeometry(0,200,90,90)
+        self.b7.setGeometry(0,300,80,80)
         self.b7.setText("7")
         self.b7.setFont(QFont('Ariel', 30))
         self.b7.clicked.connect(self.seven_clicked)
 
         self.b8 = QtWidgets.QPushButton(self)
-        self.b8.setGeometry(100,200,90,90)
+        self.b8.setGeometry(100,300,80,80)
         self.b8.setText("8")
         self.b8.setFont(QFont('Ariel', 30))
         self.b8.clicked.connect(self.eight_clicked)
 
         self.b9 = QtWidgets.QPushButton(self)
-        self.b9.setGeometry(200,200,90,90)
+        self.b9.setGeometry(200,300,80,80)
         self.b9.setText("9")
         self.b9.setFont(QFont('Ariel', 30))
         self.b9.clicked.connect(self.nine_clicked)
 
         self.blist = QtWidgets.QPushButton(self)
-        self.blist.setGeometry(0,300,90,90)
-        self.blist.setText("List")
-        self.blist.setFont(QFont('Ariel', 20))
+        self.blist.setGeometry(0,410,80,60)
+        self.blist.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/list.png);")
         self.blist.clicked.connect(self.list_clicked)
 
         self.b0 = QtWidgets.QPushButton(self)
-        self.b0.setGeometry(100,300,90,90)
+        self.b0.setGeometry(100,400,80,80)
         self.b0.setText("0")
         self.b0.setFont(QFont('Ariel', 30))
         self.b0.clicked.connect(self.zero_clicked)
 
         self.bguide = QtWidgets.QPushButton(self)
-        self.bguide.setGeometry(200,300,90,90)
-        self.bguide.setText("Guide")
-        self.bguide.setFont(QFont('Ariel', 20))
+        self.bguide.setGeometry(200,410,80,60)
+        self.bguide.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/guide.png);")
         self.bguide.clicked.connect(self.guide_clicked)
 
-        self.bvolup = QtWidgets.QPushButton(self)
-        self.bvolup.setGeometry(0,500,50,50)
-        self.bvolup.setText("volup")
-        self.bvolup.setFont(QFont('Ariel', 12))
-        self.bvolup.clicked.connect(self.volup_clicked)
-
-        self.bvoldown = QtWidgets.QPushButton(self)
-        self.bvoldown.setGeometry(0,560,50,50)
-        self.bvoldown.setText("voldown")
-        self.bvoldown.setFont(QFont('Ariel', 12))
-        self.bvoldown.clicked.connect(self.voldown_clicked)
-
-        self.bchup = QtWidgets.QPushButton(self)
-        self.bchup.setGeometry(200,500,50,50)
-        self.bchup.setText("chup")
-        self.bchup.setFont(QFont('Ariel', 12))
-        self.bchup.clicked.connect(self.chup_clicked)
-
-        self.bchdown = QtWidgets.QPushButton(self)
-        self.bchdown.setGeometry(200,560,50,50)
-        self.bchdown.setText("chdown")
-        self.bchdown.setFont(QFont('Ariel', 12))
-        self.bchdown.clicked.connect(self.chdown_clicked)
-
         self.bnetflix = QtWidgets.QPushButton(self)
-        self.bnetflix.setGeometry(0,400,90,90)
-        self.bnetflix.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/adjnetflix.png);")
+        self.bnetflix.setGeometry(0,500,80,80)
+        self.bnetflix.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjnetflix.png);")
         self.bnetflix.clicked.connect(self.netflix_clicked)
 
         self.byoutube = QtWidgets.QPushButton(self)
-        self.byoutube.setGeometry(100,400,90,90)
-        self.byoutube.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/adjyoutube.jpg);")
+        self.byoutube.setGeometry(100,500,80,80)
+        self.byoutube.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjyoutube.jpg);")
         self.byoutube.clicked.connect(self.youtube_clicked)
 
         self.btwitch = QtWidgets.QPushButton(self)
-        self.btwitch.setGeometry(200,400,90,90)
-        self.btwitch.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/adjtwitch.png);")
+        self.btwitch.setGeometry(200,500,80,80)
+        self.btwitch.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjtwitch.png);")
         self.btwitch.clicked.connect(self.twitch_clicked)
 
-        self.bInput = QtWidgets.QPushButton(self)
-        self.bInput.setGeometry(100,500,90,90)
-        self.bInput.clicked.connect(self.detectInput)
+        self.bvolup = QtWidgets.QPushButton(self)
+        self.bvolup.setGeometry(15,600,55,55)
+        self.bvolup.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioUp.jpg);")
+        self.bvolup.clicked.connect(self.volup_clicked)
+
+        self.bvoldown = QtWidgets.QPushButton(self)
+        self.bvoldown.setGeometry(15,660,55,55)
+        self.bvoldown.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioDown.jpg);")
+        self.bvoldown.clicked.connect(self.voldown_clicked)
+
+        self.bchup = QtWidgets.QPushButton(self)
+        self.bchup.setGeometry(200,600,80,60)
+        self.bchup.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/up.png);")
+        self.bchup.clicked.connect(self.chup_clicked)
+
+        self.bchdown = QtWidgets.QPushButton(self)
+        self.bchdown.setGeometry(200,660,85,60)
+        self.bchdown.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/down.png);")
+        self.bchdown.clicked.connect(self.chdown_clicked)
 
         self.bMute = QtWidgets.QPushButton(self)
-        self.bMute.setGeometry(100,600,90,90)
+        self.bMute.setGeometry(100,630,55,55)
+        self.bMute.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioMute.jpg);")
         self.bMute.clicked.connect(self.mute_clicked)
-        
-        self.bPower = QtWidgets.QPushButton(self)
-        self.bPower.setGeometry(100,700,90,90)
-        self.bPower.clicked.connect(self.power_clicked)
 
     def update(self):
         self.label.adjustSize()
