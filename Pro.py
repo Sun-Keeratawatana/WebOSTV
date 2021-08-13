@@ -16,7 +16,7 @@ class connection(object):
 
     def connect(self):
         try:
-            self.tvClient = WebOsClient(self.ip)
+            self.tvClient = WebOsClient(self.ip, timeout_connect=3)
 
         except:
             print("Error connecting to tv")
@@ -30,6 +30,7 @@ class MyWindow(QMainWindow):
         self.initUI()
         self.webos_client = connection('192.168.1.121').connect()
         self.channel = ""
+        self.isMute = False
 
     def findChId(self, number):
         for channel in self.webos_client.get_channels():
@@ -144,6 +145,7 @@ class MyWindow(QMainWindow):
         try:
             self.webos_client.launch_app(self.appid("tv"))
             self.webos_client.set_channel(self.findChId("0"))
+            
         except:
             print("Failed to complete the task")
             sys.exit(0)
@@ -190,8 +192,7 @@ class MyWindow(QMainWindow):
         try:
             self.webos_client.launch_app(self.appid("twitch"))
         except:
-            print("Failed to complete the task")
-            sys.exit(0)
+            print("Exception on launching twitch")
         self.update()
 
     def volup_clicked(self):
@@ -229,7 +230,17 @@ class MyWindow(QMainWindow):
             print("Failed to complete the task")
             sys.exit(0)
         self.update()
+
+    def mute_clicked(self):
+        self.isMute = self.webos_client.get_muted()
+        if self.isMute:
+            self.webos_client.set_mute(False)
+        else:
+            self.webos_client.set_mute(True)
     
+    def power_clicked(self):
+        self.webos_client.power_off()
+
     def appid(self, x):
 
         if x == "netflix":
@@ -397,7 +408,13 @@ class MyWindow(QMainWindow):
         self.bInput.setGeometry(100,500,90,90)
         self.bInput.clicked.connect(self.detectInput)
 
+        self.bMute = QtWidgets.QPushButton(self)
+        self.bMute.setGeometry(100,600,90,90)
+        self.bMute.clicked.connect(self.mute_clicked)
         
+        self.bPower = QtWidgets.QPushButton(self)
+        self.bPower.setGeometry(100,700,90,90)
+        self.bPower.clicked.connect(self.power_clicked)
 
     def update(self):
         self.label.adjustSize()
