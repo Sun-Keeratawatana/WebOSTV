@@ -7,151 +7,227 @@ import logging
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
+class connection(object):
+    def __init__(self, ip, port=3000, key=None):
+        self.ip = ip
+        self.port = port
+        self.key = key
+        self.tvClient = None
+
+    def connect(self):
+        try:
+            self.tvClient = WebOsClient(self.ip)
+
+        except:
+            print("Error connecting to tv")
+            sys.exit(0)
+
+        return self.tvClient
+
 class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow,self).__init__()
-    
         self.initUI()
+        self.webos_client = connection('192.168.1.121').connect()
+        self.channel = ""
 
-    def connecttv(self):
-        try:
-            self.webos_client = WebOsClient('192.168.1.121')
-            #webos_client.launch_app("com.webos.app.browser")
-            #webos_client.open_url("https://www.youtube.com")
-            #print(self.webos_client.get_apps())
-            for app in self.webos_client.get_apps():
-                pass
-                #print(app)
-        except:
-            print("Error connecting to TV")
-    
     def findChId(self, number):
         for channel in self.webos_client.get_channels():
             if(channel["channelNumber"] == number):
                 return channel["channelId"]
 
+    def detectInput(self):
+        if"livetv" in self.webos_client.get_input():
+            self.webos_client.launch_app(self.appid("hdmi1"))
+
+        elif "hdmi1" in self.webos_client.get_input():
+            self.webos_client.launch_app(self.appid("hdmi2"))
+
+        elif "hdmi2" in self.webos_client.get_input():
+            self.webos_client.launch_app(self.appid("hdmi3"))
+
+        else:
+            self.webos_client.launch_app(self.appid("tv"))
+
     def one_clicked(self):
         self.label.setText("1")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("1"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("1"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def two_clicked(self):
         self.label.setText("2")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("2"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("2"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def three_clicked(self):
         self.label.setText("3")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("3"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("3"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def four_clicked(self):
         self.label.setText("4")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("4"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("4"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def five_clicked(self):
         self.label.setText("5")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("5"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("5"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def six_clicked(self):
         self.label.setText("6")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("6"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("6"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def seven_clicked(self):
         self.label.setText("7")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("7"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("7"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def eight_clicked(self):
         self.label.setText("8")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("8"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("8"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def nine_clicked(self):
         self.label.setText("9")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("9"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("9"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def zero_clicked(self):
         self.label.setText("0")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("tv"))
-        self.webos_client.set_channel(self.findChId("0"))
+        try:
+            self.webos_client.launch_app(self.appid("tv"))
+            self.webos_client.set_channel(self.findChId("0"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def list_clicked(self):
         self.label.setText("List")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("list"))
+        try:
+            self.webos_client.launch_app(self.appid("list"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def guide_clicked(self):
         self.label.setText("Guide")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("guide"))
+        try:
+            self.webos_client.launch_app(self.appid("guide"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def netflix_clicked(self):
         self.label.setText("Netflix")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("netflix"))
+        try:
+            self.webos_client.launch_app(self.appid("netflix"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
     
     def youtube_clicked(self):
         self.label.setText("Youtube")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("youtube"))
+        try:
+            self.webos_client.launch_app(self.appid("youtube"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def twitch_clicked(self):
         self.label.setText("Twitch")
-        self.connecttv()
-        self.webos_client.launch_app(self.appid("twitch"))
+        try:
+            self.webos_client.launch_app(self.appid("twitch"))
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def volup_clicked(self):
         self.label.setText("Volume Up")
-        self.connecttv()
-        self.webos_client.volume_up()
+        try:
+            self.webos_client.volume_up()
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
     
     def voldown_clicked(self):
         self.label.setText("Volume Down")
-        self.connecttv()
-        self.webos_client.volume_down()
+        try:
+            self.webos_client.volume_down()
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
 
     def chup_clicked(self):
         self.label.setText("Channel Up")
-        self.connecttv()
-        self.webos_client.channel_up()
+        try:
+            self.webos_client.channel_up()
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
     
     def chdown_clicked(self):
         self.label.setText("Channel Down")
-        self.connecttv()
-        self.webos_client.channel_down()
+        try:
+            self.webos_client.channel_down()
+        except:
+            print("Failed to complete the task")
+            sys.exit(0)
         self.update()
     
     def appid(self, x):
@@ -179,7 +255,15 @@ class MyWindow(QMainWindow):
 
         elif x == "list":
             return "com.webos.app.livemenu"
-    
+
+        elif x == "hdmi1":
+            return "com.webos.app.hdmi1"
+        
+        elif x == "hdmi2":
+            return "com.webos.app.hdmi2"
+
+        elif x == "hdmi3":
+            return "com.webos.app.hdmi3"
 # id:com.webos.app.livetv, netflix, doonung, lgtv-hbogoasia1, amazon, com.viu.tv, com.webos.app.notificationcenter, 
 # com.webos.app.remoteservice, com.webos.app.accessibility, com.webos.app.livemenu, com.webos.app.miracast
 # com.webos.app.scheduler, com.webos.app.recordings, com.webos.app.photovideo, com.webos.app.music, com.webos.app.btspeakerapp
@@ -188,6 +272,7 @@ class MyWindow(QMainWindow):
 # com.apple.appletv
 
     def initUI(self):
+        
         self.setGeometry(0, 0, 300, 1000)
         self.setWindowTitle("Remote")
         #self.setStyleSheet("background-color: black")
@@ -307,6 +392,12 @@ class MyWindow(QMainWindow):
         self.btwitch.setGeometry(200,400,90,90)
         self.btwitch.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/adjtwitch.png);")
         self.btwitch.clicked.connect(self.twitch_clicked)
+
+        self.bInput = QtWidgets.QPushButton(self)
+        self.bInput.setGeometry(100,500,90,90)
+        self.bInput.clicked.connect(self.detectInput)
+
+        
 
     def update(self):
         self.label.adjustSize()
