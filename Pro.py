@@ -1,5 +1,5 @@
 from pylgtv import WebOsClient
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
@@ -8,15 +8,16 @@ import logging
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 class connection(object):
-    def __init__(self, ip, port=3000, key=None):
+    def __init__(self, ip, port=3000, key=None, timeout = 3):
         self.ip = ip
         self.port = port
         self.key = key
         self.tvClient = None
+        self.timeout = timeout
 
     def connect(self):
         try:
-            self.tvClient = WebOsClient(self.ip, timeout_connect=3)
+            self.tvClient = WebOsClient(self.ip, timeout_connect=self.timeout)
 
         except:
             print("Error connecting to tv")
@@ -27,10 +28,16 @@ class connection(object):
 class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow,self).__init__()
-        self.initUI()
-        self.webos_client = connection('192.168.1.121').connect()
         self.channel = ""
+        self.volume = ""
         self.isMute = False
+        self.app = ""
+        self.initUI()
+        try:
+            self.webos_client = connection('192.168.1.121').connect()
+            self.label.setText("Connected")
+        except:
+            self.label.setText("Failed")
 
     def findChId(self, number):
         for channel in self.webos_client.get_channels():
@@ -40,196 +47,197 @@ class MyWindow(QMainWindow):
     def detectInput(self):
         if"livetv" in self.webos_client.get_input():
             self.webos_client.launch_app(self.appid("hdmi1"))
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText("hdmi1")
 
         elif "hdmi1" in self.webos_client.get_input():
             self.webos_client.launch_app(self.appid("hdmi2"))
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText("hdmi2")
 
         elif "hdmi2" in self.webos_client.get_input():
             self.webos_client.launch_app(self.appid("hdmi3"))
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText("hdmi3")
 
         else:
             self.webos_client.launch_app(self.appid("tv"))
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText("TV")
+
+    def channel_clicked(self):
+        self.label.setText(self.channel)
+        if((len(self.channel)) == 2):
+            if(self.channel.startswith('0')):
+                print("0")
+                self.channel = self.channel[-1]
+            try:
+                self.label.setAlignment(QtCore.Qt.AlignCenter)
+                self.label.setText(self.channel)
+                self.webos_client.launch_app(self.appid("tv"))
+                self.webos_client.set_channel(self.findChId(self.channel))
+                print(self.channel)
+                self.channel = ""
+
+            except:
+                print("Failed to complete the task")
+                sys.exit(0)
+
+        elif((len(self.channel)) > 2):
+            self.channel = ""
+            self.label.setText("")
+
 
     def one_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("1")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("1"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "1"
+        self.channel_clicked()
 
     def two_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("2")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("2"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "2"
+        self.channel_clicked()
 
     def three_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("3")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("3"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "3"
+        self.channel_clicked()
 
     def four_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("4")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("4"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "4"
+        self.channel_clicked()
 
     def five_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("5")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("5"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "5"
+        self.channel_clicked()
 
     def six_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("6")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("6"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "6"
+        self.channel_clicked()
 
     def seven_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("7")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("7"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "7"
+        self.channel_clicked()
 
     def eight_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("8")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("8"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "8"
+        self.channel_clicked()
 
     def nine_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("9")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("9"))
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "9"
+        self.channel_clicked()
 
     def zero_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("0")
-        try:
-            self.webos_client.launch_app(self.appid("tv"))
-            self.webos_client.set_channel(self.findChId("0"))
-            
-        except:
-            print("Failed to complete the task")
-            sys.exit(0)
-        self.update()
+        self.channel = self.channel + "0"
+        self.channel_clicked()
 
     def list_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("List")
         try:
             self.webos_client.launch_app(self.appid("list"))
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
 
     def guide_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("Guide")
         try:
             self.webos_client.launch_app(self.appid("guide"))
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
 
     def netflix_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("Netflix")
         try:
             self.webos_client.launch_app(self.appid("netflix"))
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
     
     def youtube_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("Youtube")
         try:
             self.webos_client.launch_app(self.appid("youtube"))
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
 
     def twitch_clicked(self):
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setText("Twitch")
         try:
             self.webos_client.launch_app(self.appid("twitch"))
         except:
             print("Exception on launching twitch")
-        self.update()
 
     def volup_clicked(self):
-        self.label.setText("Volume Up")
+        #self.label.setText("Volume Up")
         try:
             self.webos_client.volume_up()
+            self.vol_label.setAlignment(QtCore.Qt.AlignCenter)
+            self.volume = "Audio: " + str(self.webos_client.get_volume())
+            self.vol_label.setText(self.volume)
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
     
     def voldown_clicked(self):
-        self.label.setText("Volume Down")
+        #self.label.setText("Volume Down")
         try:
             self.webos_client.volume_down()
+            self.vol_label.setAlignment(QtCore.Qt.AlignCenter)
+            self.vol_label.setText(str(self.webos_client.get_volume()))
+            self.volume = "Audio: " + str(self.webos_client.get_volume())
+            self.vol_label.setText(self.volume)
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
 
     def chup_clicked(self):
-        self.label.setText("Channel Up")
+        #self.label.setText("Channel Up")
         try:
+            self.webos_client.launch_app(self.appid("tv"))
             self.webos_client.channel_up()
+            self.channel = self.webos_client.get_current_channel()["channelNumber"]
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText(self.channel)
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
     
     def chdown_clicked(self):
-        self.label.setText("Channel Down")
+        #self.label.setText("Channel Down")
         try:
+            self.webos_client.launch_app(self.appid("tv"))
             self.webos_client.channel_down()
+            self.channel = self.webos_client.get_current_channel()["channelNumber"]
+            self.label.setAlignment(QtCore.Qt.AlignCenter)
+            self.label.setText(self.channel)
         except:
             print("Failed to complete the task")
             sys.exit(0)
-        self.update()
 
     def mute_clicked(self):
         self.isMute = self.webos_client.get_muted()
@@ -301,8 +309,16 @@ class MyWindow(QMainWindow):
         self.setStyleSheet("background-color: white")
 
         self.label = QtWidgets.QLabel(self)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setFont(QFont("Times", 20))
         self.label.setText("Status Label")
-        self.label.move(100,900)
+        #self.label.setStyleSheet("background-color: black")
+        self.label.setGeometry(0,850,300,50)
+
+        self.vol_label = QtWidgets.QLabel(self)
+        self.vol_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.vol_label.setFont(QFont("Times", 20))
+        self.vol_label.setGeometry(0,900,300,50)
 
         self.bPower = QtWidgets.QPushButton(self)
         self.bPower.setGeometry(20,0,90,90)
@@ -447,14 +463,9 @@ class MyWindow(QMainWindow):
         self.bforward.clicked.connect(self.forward_clicked)
 
 
-    def update(self):
-        self.label.adjustSize()
 
-
-def window():
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = MyWindow()
     win.show()
     sys.exit(app.exec_())
-
-window()
