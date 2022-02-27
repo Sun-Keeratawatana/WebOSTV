@@ -322,13 +322,13 @@ class MyWindow(QMainWindow):
 
         self.bPower = QtWidgets.QPushButton(self)
         self.bPower.setGeometry(20,0,90,90)
-        self.bPower.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/power.png);")
+        self.bPower.setStyleSheet("border-radius : 10px; background-image : url(images/power.png);")
         self.bPower.clicked.connect(self.power_clicked)
 
         
         self.bInput = QtWidgets.QPushButton(self)
         self.bInput.setGeometry(180,5,80,80)
-        self.bInput.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/input.png);")
+        self.bInput.setStyleSheet("border-radius : 10px; background-image : url(images/input.png);")
         self.bInput.clicked.connect(self.detectInput)
 
         self.b1 = QtWidgets.QPushButton(self)
@@ -388,7 +388,7 @@ class MyWindow(QMainWindow):
 
         self.blist = QtWidgets.QPushButton(self)
         self.blist.setGeometry(0,410,80,60)
-        self.blist.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/list.png);")
+        self.blist.setStyleSheet("border-radius : 10px; background-image : url(images/list.png);")
         self.blist.clicked.connect(self.list_clicked)
 
         self.b0 = QtWidgets.QPushButton(self)
@@ -399,67 +399,67 @@ class MyWindow(QMainWindow):
 
         self.bguide = QtWidgets.QPushButton(self)
         self.bguide.setGeometry(200,410,80,60)
-        self.bguide.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/guide.png);")
+        self.bguide.setStyleSheet("border-radius : 10px; background-image : url(images/guide.png);")
         self.bguide.clicked.connect(self.guide_clicked)
 
         self.bnetflix = QtWidgets.QPushButton(self)
         self.bnetflix.setGeometry(0,500,80,80)
-        self.bnetflix.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjnetflix.png);")
+        self.bnetflix.setStyleSheet("border-radius : 10px; background-image : url(images/adjnetflix.png);")
         self.bnetflix.clicked.connect(self.netflix_clicked)
 
         self.byoutube = QtWidgets.QPushButton(self)
         self.byoutube.setGeometry(100,500,80,80)
-        self.byoutube.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjyoutube.jpg);")
+        self.byoutube.setStyleSheet("border-radius : 10px; background-image : url(images/adjyoutube.jpg);")
         self.byoutube.clicked.connect(self.youtube_clicked)
 
         self.btwitch = QtWidgets.QPushButton(self)
         self.btwitch.setGeometry(200,500,80,80)
-        self.btwitch.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/adjtwitch.png);")
+        self.btwitch.setStyleSheet("border-radius : 10px; background-image : url(images/adjtwitch.png);")
         self.btwitch.clicked.connect(self.twitch_clicked)
 
         self.bvolup = QtWidgets.QPushButton(self)
         self.bvolup.setGeometry(15,600,55,55)
-        self.bvolup.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioUp.jpg);")
+        self.bvolup.setStyleSheet("background-image : url(images/audioUp.jpg);")
         self.bvolup.clicked.connect(self.volup_clicked)
 
         self.bvoldown = QtWidgets.QPushButton(self)
         self.bvoldown.setGeometry(15,660,55,55)
-        self.bvoldown.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioDown.jpg);")
+        self.bvoldown.setStyleSheet("background-image : url(images/audioDown.jpg);")
         self.bvoldown.clicked.connect(self.voldown_clicked)
 
         self.bchup = QtWidgets.QPushButton(self)
         self.bchup.setGeometry(200,600,80,60)
-        self.bchup.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/up.png);")
+        self.bchup.setStyleSheet("border-radius : 10px; background-image : url(images/up.png);")
         self.bchup.clicked.connect(self.chup_clicked)
 
         self.bchdown = QtWidgets.QPushButton(self)
         self.bchdown.setGeometry(200,660,85,60)
-        self.bchdown.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/down.png);")
+        self.bchdown.setStyleSheet("border-radius : 10px; background-image : url(images/down.png);")
         self.bchdown.clicked.connect(self.chdown_clicked)
 
         self.bMute = QtWidgets.QPushButton(self)
         self.bMute.setGeometry(100,630,55,55)
-        self.bMute.setStyleSheet("background-image : url(E:/Tokio/WebOS/images/audioMute.jpg);")
+        self.bMute.setStyleSheet("background-image : url(images/audioMute.jpg);")
         self.bMute.clicked.connect(self.mute_clicked)
 
         self.brewind = QtWidgets.QPushButton(self)
         self.brewind.setGeometry(20,740,50,50)
-        self.brewind.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/rewind.png);")
+        self.brewind.setStyleSheet("border-radius : 10px; background-image : url(images/rewind.png);")
         self.brewind.clicked.connect(self.rewind_clicked)
 
         self.bplay = QtWidgets.QPushButton(self)
         self.bplay.setGeometry(170,740,50,50)
-        self.bplay.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/play.png);")
+        self.bplay.setStyleSheet("border-radius : 10px; background-image : url(images/play.png);")
         self.bplay.clicked.connect(self.play_clicked)
 
         self.bpause = QtWidgets.QPushButton(self)
         self.bpause.setGeometry(90,740,50,50)
-        self.bpause.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/pause.png);")
+        self.bpause.setStyleSheet("border-radius : 10px; background-image : url(images/pause.png);")
         self.bpause.clicked.connect(self.pause_clicked)
 
         self.bforward = QtWidgets.QPushButton(self)
         self.bforward.setGeometry(240,740,50,50)
-        self.bforward.setStyleSheet("border-radius : 10px; background-image : url(E:/Tokio/WebOS/images/ff.jpg);")
+        self.bforward.setStyleSheet("border-radius : 10px; background-image : url(images/ff.jpg);")
         self.bforward.clicked.connect(self.forward_clicked)
 
 
