@@ -7,7 +7,8 @@ views = Blueprint('views', __name__)
 def home():
   tv = webostv()
   currentVol = tv.get_audio_vol()
-  return render_template("home.html", current_volume=currentVol)
+  current_input = tv.detectInput()
+  return render_template("home.html", current_volume=currentVol, current_input=current_input)
 
 @views.route('/vol-down/')
 def vol_down_clicked():
@@ -69,7 +70,9 @@ def fastforward_clicked():
   webostv().forward_clicked()
   return render_template("home.html")
 
-@views.route('/inputs')
+@views.route('/inputs/')
 def inputs_clicked():
   webostv().inputs_clicked()
-  return render_template("home.html")
+  current_input = webostv().detectInput()
+  return render_template("home.html", current_input=current_input)
+
