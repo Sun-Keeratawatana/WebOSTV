@@ -29,7 +29,7 @@ class webostv():
             print("Failed")
         self.channel = ""
         self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
-        self.isMute = False
+        self.isMute = self.webos_client.get_muted()
         self.app = ""
         
             
@@ -37,7 +37,13 @@ class webostv():
         return self.volume
 
 
-    #Converting into app id
+# id:com.webos.app.livetv, netflix, doonung, lgtv-hbogoasia1, amazon, com.viu.tv, com.webos.app.notificationcenter, 
+# com.webos.app.remoteservice, com.webos.app.accessibility, com.webos.app.livemenu, com.webos.app.miracast
+# com.webos.app.scheduler, com.webos.app.recordings, com.webos.app.photovideo, com.webos.app.music, com.webos.app.btspeakerapp
+# com.webos.app.connectionwizard, com.webos.app.tvuserguide, com.webos.app.browser, com.xstars.app.aquarelax, com.webos.app.hdmi2
+# com.webos.app.hdmi3, spotify-beehive, youtube.leanback.v4, airplay, com.webos.app.discover, tv.twitch.tv.starshot.lg
+# com.apple.appletv
+
     def appid(self, x):
 
         if x == "netflix":
@@ -82,18 +88,27 @@ class webostv():
 
     def detectInput(self):
         if "livetv" in self.webos_client.get_input():
-            self.webos_client.launch_app(self.appid("hdmi1"))
+            return "livetv"
 
         elif "hdmi1" in self.webos_client.get_input():
-            self.webos_client.launch_app(self.appid("hdmi2"))
+            return "hdmi1"
 
         elif "hdmi2" in self.webos_client.get_input():
-            self.webos_client.launch_app(self.appid("hdmi3"))
+            return "hdmi2"
 
         else:
-            self.webos_client.launch_app(self.appid("tv"))
+            return "hdmi3"
 
-    
+    def inputs_clicked(self):
+        if self.detectInput() == "livetv":
+            return self.webos_client.launch_app(self.appid("hdmi1"))
+        elif self.detectInput() == "hdmi1":
+            return self.webos_client.launch_app(self.appid("hdmi2"))
+        elif self.detectInput() == "hdmi2":
+            return self.webos_client.launch_app(self.appid("hdmi3"))
+        else:
+            return self.webos_client.launch_app(self.appid("tv"))
+
     def power_clicked(self):
         return self.webos_client.power_off()
 
@@ -121,10 +136,19 @@ class webostv():
     def netflix_clicked(self):
         return self.webos_client.launch_app(self.appid("netflix"))
 
+
     def vol_up_clicked(self):
         self.volume += 1
         return self.webos_client.volume_up()
-    
+
+
     def vol_down_clicked(self):
         self.volume -= 1
         return self.webos_client.volume_down()
+
+
+    def mute_clicked(self):
+        if self.isMute:
+            return self.webos_client.set_mute(False)
+        else:
+            return self.webos_client.set_mute(True)
