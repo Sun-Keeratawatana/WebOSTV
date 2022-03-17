@@ -23,14 +23,19 @@ class connection(object):
 
 class webostv():
     def __init__(self):
-        self.channel = ""
-        self.volume = ""
-        self.isMute = False
-        self.app = ""
         try:
-            self.webos_client = connection('192.168.1.108').connect()
+            self.webos_client = connection('10.66.2.172').connect()
         except:
             print("Failed")
+        self.channel = ""
+        self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+        self.isMute = False
+        self.app = ""
+        
+            
+    def get_audio_vol(self):
+        return self.volume
+
 
     #Converting into app id
     def appid(self, x):
@@ -108,3 +113,18 @@ class webostv():
     def forward_clicked(self):
         return self.webos_client.fast_forward()
 
+
+    def youtube_clicked(self):
+        return self.webos_client.launch_app(self.appid("youtube"))
+
+
+    def netflix_clicked(self):
+        return self.webos_client.launch_app(self.appid("netflix"))
+
+    def vol_up_clicked(self):
+        self.volume += 1
+        return self.webos_client.volume_up()
+    
+    def vol_down_clicked(self):
+        self.volume -= 1
+        return self.webos_client.volume_down()

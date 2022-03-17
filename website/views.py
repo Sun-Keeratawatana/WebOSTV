@@ -1,45 +1,41 @@
 from flask import Blueprint, render_template
-from pylgtv import WebOsClient
-from tvapi import *
+from website.tvapi import *
 
 views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-  webos_client = WebOsClient('192.168.1.108')
-  currentVol = webos_client.get_audio_status().get("volumeStatus")["volume"]
+  tv = webostv()
+  currentVol = tv.get_audio_vol()
   return render_template("home.html", current_volume=currentVol)
 
 @views.route('/vol-down/')
 def vol_down_clicked():
-  webos_client = WebOsClient('192.168.1.108')
-  webos_client.volume_down()
-  currentVol = webos_client.get_audio_status().get("volumeStatus")["volume"]
+  tv = webostv()
+  tv.vol_down_clicked()
+  currentVol = tv.get_audio_vol()
   return render_template("home.html", current_volume=currentVol)
 
 @views.route('/vol-up/')
 def vol_up_clicked():
-  webos_client = WebOsClient('192.168.1.108')
-  webos_client.volume_up()
-  currentVol = webos_client.get_audio_status().get("volumeStatus")["volume"]
+  tv = webostv()
+  tv.vol_up_clicked()
+  currentVol = tv.get_audio_vol()
   return render_template("home.html", current_volume=currentVol)
 
 @views.route('/netflix/')
 def netflix_clicked():
-  webos_client = WebOsClient('192.168.1.108')
-  webos_client.launch_app("netflix")
+  webostv().netflix_clicked()
   return render_template("home.html")
 
 @views.route('/youtube/')
 def youtube_clicked():
-  webos_client = WebOsClient('192.168.1.108')
-  webos_client.launch_app("youtube.leanback.v4")
+  webostv().youtube_clicked()
   return render_template("home.html")
 
 @views.route('/power/')
 def power_clicked():
-  webos_client = WebOsClient('192.168.1.108')
-  webos_client.power_off()
+  webostv().power_clicked()
   return render_template("home.html")
 
 @views.route('/play/')

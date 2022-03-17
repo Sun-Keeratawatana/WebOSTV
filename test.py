@@ -6,7 +6,7 @@ import logging
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 try:
-    webos_client = WebOsClient('192.168.1.108')
+    webos_client = WebOsClient('10.66.2.172')
     #webos_client.launch_app('youtube.leanback.v4')
     #webos_client.volume_down()
     #print(webos_client.get_inputs())
