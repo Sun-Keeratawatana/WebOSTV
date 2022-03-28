@@ -1,6 +1,7 @@
 from pylgtv import WebOsClient
 import sys
 
+
 class connection(object):
     def __init__(self, ip, port=3000, key=None, timeout = 3):
         self.ip = ip
@@ -24,18 +25,23 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('10.66.2.172').connect()
+            self.webos_client = connection('192.168.1.108').connect()
         except:
-            print("Failed")
+            print("Failed to connect")
         self.channel = ""
-        self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
-        self.isMute = self.webos_client.get_muted()
+        try:
+            self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+            self.isMute = self.webos_client.get_muted()
+        except:
+            print("Failed to retrieve volume")
         self.app = ""
         
             
     def get_audio_vol(self):
         return self.volume
 
+    def get_mute(self):
+        return self.isMute
 
 # id:com.webos.app.livetv, netflix, doonung, lgtv-hbogoasia1, amazon, com.viu.tv, com.webos.app.notificationcenter, 
 # com.webos.app.remoteservice, com.webos.app.accessibility, com.webos.app.livemenu, com.webos.app.miracast
@@ -99,6 +105,11 @@ class webostv():
         else:
             return "hdmi3"
 
+
+    def toCable(self):
+        return self.webos_client.launch_app(self.appid("tv"))
+
+
     def inputs_clicked(self):
         if self.detectInput() == "livetv":
             return self.webos_client.launch_app(self.appid("hdmi1"))
@@ -107,8 +118,26 @@ class webostv():
         elif self.detectInput() == "hdmi2":
             return self.webos_client.launch_app(self.appid("hdmi3"))
         else:
-            return self.webos_client.launch_app(self.appid("tv"))
+            return self.toCable()
 
+
+    def findChId(self, number):
+        for channel in self.webos_client.get_channels():
+            if(channel["channelNumber"] == number):
+                return channel["channelId"]
+
+
+    def channel_num_clicked(self, num):
+        self.channel += str(num)
+        print(self.channel)
+        if len(self.channel) == 2:
+            if(self.channel.startswith('0')):
+                self.channel = self.channel[-1]
+            self.channel = ""
+            return self.webos_client.set_channel(self.findChId(self.channel))
+        return
+
+        
     def power_clicked(self):
         return self.webos_client.power_off()
 
@@ -152,3 +181,11 @@ class webostv():
             return self.webos_client.set_mute(False)
         else:
             return self.webos_client.set_mute(True)
+
+    def channel_up(self):
+        self.webos_client.launch_app(self.appid("tv"))
+        return self.webos_client.channel_up()
+
+    def channel_down(self):
+        self.webos_client.launch_app(self.appid("tv"))
+        return self.webos_client.channel_down()
