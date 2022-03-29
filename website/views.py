@@ -1,27 +1,27 @@
 from flask import Blueprint, render_template
-from website.tvapi import *
+from .tvapi import *
 
 views = Blueprint('views', __name__)
 
-
 tv = webostv()
+tv.mute_clicked()
 
 @views.route('/')
 def home():
-  currentVol = tv.get_audio_vol()
-  current_ch = tv.channel
+  currentVol = webostv().get_audio_vol()
+  current_ch = webostv().channel
   return render_template("home.html", current_volume=currentVol, current_input=current_ch)
 
 @views.route('/vol-down/')
 def vol_down_clicked():
-  tv.vol_down_clicked()
-  currentVol = tv.get_audio_vol()
+  webostv().vol_down_clicked()
+  currentVol = webostv().get_audio_vol()
   return render_template("home.html", current_volume=currentVol, Muted='')
 
 @views.route('/vol-up/')
 def vol_up_clicked():
-  tv.vol_up_clicked()
-  currentVol = tv.get_audio_vol()
+  webostv().vol_up_clicked()
+  currentVol = webostv().get_audio_vol()
   return render_template("home.html", current_volume=currentVol, Muted='')
 
 @views.route('/mute/')
@@ -103,5 +103,66 @@ def ch1_clicked():
 def ch2_clicked():
   tv.toCable()
   tv.channel_num_clicked(2)
+  current_input = webostv().channel
+  return render_template("home.html", current_input=current_input)
+
+@views.route('/ch3/')
+def ch3_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(3)
+  current_ch = webostv().channel
+  return render_template("home.html", current_input=current_ch)
+
+
+@views.route('/ch4/')
+def ch4_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(4)
+  current_input = webostv().channel
+  return render_template("home.html", current_input=current_input)
+
+@views.route('/ch5/')
+def ch5_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(5)
+  current_ch = webostv().channel
+  return render_template("home.html", current_input=current_ch)
+
+
+@views.route('/ch6/')
+def ch6_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(6)
+  current_input = webostv().channel
+  return render_template("home.html", current_input=current_input)
+
+@views.route('/ch7/')
+def ch7_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(7)
+  current_ch = webostv().channel
+  return render_template("home.html", current_input=current_ch)
+
+
+@views.route('/ch8/')
+def ch8_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(8)
+  current_input = webostv().channel
+  return render_template("home.html", current_input=current_input)
+
+
+@views.route('/ch9/')
+def ch9_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(9)
+  current_ch = webostv().channel
+  return render_template("home.html", current_input=current_ch)
+
+
+@views.route('/ch0/')
+def ch0_clicked():
+  tv.toCable()
+  tv.channel_num_clicked(0)
   current_input = webostv().channel
   return render_template("home.html", current_input=current_input)

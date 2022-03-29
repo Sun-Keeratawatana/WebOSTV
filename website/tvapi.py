@@ -1,7 +1,6 @@
 from pylgtv import WebOsClient
 import sys
 
-
 class connection(object):
     def __init__(self, ip, port=3000, key=None, timeout = 3):
         self.ip = ip
@@ -25,15 +24,14 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('192.168.1.108').connect()
+            self.webos_client = connection('10.66.2.172').connect()
         except:
             print("Failed to connect")
         self.channel = ""
-        try:
-            self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
-            self.isMute = self.webos_client.get_muted()
-        except:
-            print("Failed to retrieve volume")
+        
+        self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+        self.isMute = self.webos_client.get_muted()
+        
         self.app = ""
         
             
