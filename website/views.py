@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template
-from .tvapi import *
+import sys
+sys.path.append('/Users/sun/Desktop/WebOSTV/')
+from tvapi import webostv
 
 views = Blueprint('views', __name__)
 
 tv = webostv()
-tv.mute_clicked()
 
 @views.route('/')
 def home():

@@ -1,4 +1,6 @@
 from flask import Flask
+import sys
+sys.path.append('/Users/sun/Desktop/WebOSTV/api')
 
 def create_app():
     app = Flask(__name__, template_folder="templates")

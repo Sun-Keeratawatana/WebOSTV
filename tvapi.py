@@ -24,13 +24,17 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('10.66.2.172').connect()
+            self.webos_client = connection('192.168.1.108').connect()
         except:
             print("Failed to connect")
         self.channel = ""
-        
-        self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+        self.volume = 10
+        if self.volume == None:
+            self.volume = 10
+        else:    
+            self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
         self.isMute = self.webos_client.get_muted()
+        
         
         self.app = ""
         

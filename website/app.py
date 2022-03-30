@@ -9,25 +9,25 @@ def index():
 
 @app.route('/vol-down/')
 def vol_down_clicked():
-    webos_client = WebOsClient('192.168.1.106')
+    webos_client = WebOsClient('192.168.1.108')
     webos_client.volume_down()
     return render_template("home.html")
 
 @app.route('/vol-up/')
 def vol_up_clicked():
-    webos_client = WebOsClient('192.168.1.106')
+    webos_client = WebOsClient('192.168.1.108')
     webos_client.volume_up()
     return render_template("home.html")
 
 @app.route('/netflix/')
 def netflix_clicked():
-    webos_client = WebOsClient('192.168.1.106')
+    webos_client = WebOsClient('192.168.1.108')
     webos_client.launch_app("netflix")
     return render_template("home.html")
 
 @app.route('/youtube/')
 def youtube_clicked():
-    webos_client = WebOsClient('192.168.1.106')
+    webos_client = WebOsClient('192.168.1.108')
     webos_client.launch_app("youtube.leanback.v4")
     return render_template("home.html")
 
