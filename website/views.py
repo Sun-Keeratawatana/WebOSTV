@@ -10,63 +10,74 @@ tv = webostv()
 
 @views.route('/')
 def home():
-  currentVol = webostv().get_audio_vol()
-  current_ch = webostv().get_app()
+  currentVol = tv.get_audio_vol()
+  current_ch = tv.get_app()
   checkmute = webostv()
   if checkmute.isMute:
     return render_template("home.html", current_volume=currentVol, Muted="Muted", current_input=current_ch)
   else:
     return render_template("home.html", current_volume=currentVol, current_input=current_ch)
 
+
 @views.route('/vol-down/')
 def vol_down_clicked():
-  webostv().vol_down_clicked()
+  tv.vol_down_clicked()
   return home()
+
 
 @views.route('/vol-up/')
 def vol_up_clicked():
-  webostv().vol_up_clicked()
+  tv.vol_up_clicked()
   return home()
+
 
 @views.route('/mute/')
 def mute_clicked():
   webostv().mute_clicked()
   return home()
 
+
 @views.route('/netflix/')
 def netflix_clicked():
   tv.netflix_clicked()
   return home()
+
 
 @views.route('/youtube/')
 def youtube_clicked():
   tv.youtube_clicked()
   return home()
 
+
 @views.route('/power/')
 def power_clicked():
   tv.power_clicked()
   return home()
+
 
 @views.route('/play/')
 def play_clicked():
   tv.play_clicked()
   return home()
 
+
 @views.route('/pause/')
 def pause_clicked():
   tv.pause_clicked()
   return home()
+
 
 @views.route('/rewind/')
 def rewind_clicked():
   tv.rewind_clicked()
   return home()
 
+
 @views.route('/fast-forward/')
 def fastforward_clicked():
   tv.forward_clicked()
   return home()
+
 
 @views.route('/inputs/')
 def inputs_clicked():
@@ -99,6 +110,7 @@ def ch2_clicked():
   tv.channel_num_clicked(2)
   return home()
 
+
 @views.route('/ch3/')
 def ch3_clicked():
   tv.toCable()
@@ -112,6 +124,7 @@ def ch4_clicked():
   tv.channel_num_clicked(4)
   return home()
 
+
 @views.route('/ch5/')
 def ch5_clicked():
   tv.toCable()
@@ -124,6 +137,8 @@ def ch6_clicked():
   tv.toCable()
   tv.channel_num_clicked(6)
   return home()
+
+
 @views.route('/ch7/')
 def ch7_clicked():
   tv.toCable()
@@ -136,6 +151,7 @@ def ch8_clicked():
   tv.toCable()
   tv.channel_num_clicked(8)
   return home()
+
 
 @views.route('/ch9/')
 def ch9_clicked():
