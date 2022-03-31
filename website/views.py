@@ -10,7 +10,7 @@ tv = webostv()
 @views.route('/')
 def home():
   currentVol = webostv().get_audio_vol()
-  current_ch = webostv().channel
+  current_ch = webostv().get_app()
   return render_template("home.html", current_volume=currentVol, current_input=current_ch)
 
 @views.route('/vol-down/')
@@ -39,12 +39,14 @@ def mute_clicked():
 @views.route('/netflix/')
 def netflix_clicked():
   tv.netflix_clicked()
-  return render_template("home.html")
+  current_ch = tv.get_app()
+  return render_template("home.html", current_input = current_ch)
 
 @views.route('/youtube/')
 def youtube_clicked():
   tv.youtube_clicked()
-  return render_template("home.html")
+  current_ch = tv.get_app()
+  return render_template("home.html", current_input = current_ch)
 
 @views.route('/power/')
 def power_clicked():

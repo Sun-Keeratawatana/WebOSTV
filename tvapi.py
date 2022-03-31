@@ -24,15 +24,12 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('192.168.1.108').connect()
-        except:
-            print("Failed to connect")
-        self.channel = ""
-        self.volume = 10
-        if self.volume == None:
-            self.volume = 10
-        else:    
+            self.webos_client = connection('10.66.2.172').connect()
             self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+        except:
+            sys.exit("Cannot connect to the tv")
+        self.channel = ""
+        
         self.isMute = self.webos_client.get_muted()
         
         
@@ -44,6 +41,10 @@ class webostv():
 
     def get_mute(self):
         return self.isMute
+
+    def get_app(self):
+        self.app = self.webos_client.get_current_app()
+        return self.app
 
 # id:com.webos.app.livetv, netflix, doonung, lgtv-hbogoasia1, amazon, com.viu.tv, com.webos.app.notificationcenter, 
 # com.webos.app.remoteservice, com.webos.app.accessibility, com.webos.app.livemenu, com.webos.app.miracast
@@ -139,6 +140,7 @@ class webostv():
             return self.webos_client.set_channel(self.findChId(self.channel))
         return
 
+    
         
     def power_clicked(self):
         return self.webos_client.power_off()
