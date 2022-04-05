@@ -114,6 +114,7 @@ class webostv():
 
 
     def inputs_clicked(self):
+        print("input clicked")
         if self.detectInput() == "livetv":
             return self.webos_client.launch_app(self.appid("hdmi1"))
         elif self.detectInput() == "hdmi1":
@@ -131,6 +132,7 @@ class webostv():
 
 
     def channel_num_clicked(self, num):
+        print(num, end="clicked")
         self.channel += str(num)
         print(self.channel)
         if len(self.channel) == 2:
@@ -143,53 +145,65 @@ class webostv():
     
         
     def power_clicked(self):
+        print("power clicked")
         return self.webos_client.power_off()
 
 
     def pause_clicked(self):
+        print("pause clicked")
         return self.webos_client.pause()
 
 
     def play_clicked(self):
+        print("play clicked")
         return self.webos_client.play()
 
 
     def rewind_clicked(self):
+        print("rewind clicked")
         return self.webos_client.rewind()
 
 
     def forward_clicked(self):
+        print("forward clicked")
         return self.webos_client.fast_forward()
 
 
     def youtube_clicked(self):
+        print("youtube clicked")
         return self.webos_client.launch_app(self.appid("youtube"))
 
 
     def netflix_clicked(self):
+        print("netflix clicked")
         return self.webos_client.launch_app(self.appid("netflix"))
 
 
     def vol_up_clicked(self):
+        print("vol_up clicked")
         self.volume += 1
         return self.webos_client.volume_up()
 
 
     def vol_down_clicked(self):
+        print("vol_down clicked")
         self.volume -= 1
         return self.webos_client.volume_down()
 
 
     def mute_clicked(self):
+        print("mute clicked")
         if self.isMute:
             return self.webos_client.set_mute(False)
         else:
             return self.webos_client.set_mute(True)
 
     def channel_up(self):
+        print("ch_up clicked")
         self.webos_client.launch_app(self.appid("tv"))
         return self.webos_client.channel_up()
 
     def channel_down(self):
+        print("ch_down clicked")
         self.webos_client.launch_app(self.appid("tv"))
         return self.webos_client.channel_down()
