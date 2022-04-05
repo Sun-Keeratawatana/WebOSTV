@@ -10,11 +10,13 @@
         .ltbtn{
             margin-top: 5px;
             margin-right: 5px;
+            min-width: 75px;
         }
         .rtbtn{
             float: right;
-            margin-right: 75%;
+            margin-right: 80%;
             margin-top: 5px;
+            min-width: 75px;
         }
         .btn{
             margin-top: 5px;
@@ -27,18 +29,19 @@
         <h1>LG TV remote-controller website</h1>
         <h3>Volume: {{current_volume}} {{Muted}}</h3>
         <h3>Apps: {{current_input}}</h3>
+
         <div>
-        <button style="background: url(../static/power.png);width: 40px; height: 40px;"> <a href="/power/">.</a></button>
+        <button class=topbtn style="background: url(../static/power.png);width: 40px; height: 40px;"> <a href="/power/">.</a></button>
         <button class=rtbtn> <a href="/inputs/">Inputs</a></button><br>
-        <button class=ltbtn> <a href="/vol-up/">Volume Up</a></button>
-        <button class=rtbtn> <a href="/chup/">ch up</a></button><br>
-        <button class=ltbtn> <a href="/mute/"> Mute</a></button>
-        <img src="../static/audioUp.jpg" alt="audioUp">
+        <button class=ltbtn> <a href="/vol-up/">Vol Up</a></button>
+        <button class=rtbtn> <a href="/chup/">Ch up</a></button><br>
+        <button class=ltbtn style="margin-left:84px"> <a href="/mute/"> Mute</a></button>
         <br>
-        <button class=ltbtn > <a href="/vol-down/">Volume Down</a></button>
-        <button class=rtbtn> <a href="/chdown/">ch down</a></button><br>
+        <button class=ltbtn > <a href="/vol-down/">Vol Down</a></button>
+        <button class=rtbtn> <a href="/chdown/">Ch down</a></button><br>
         
         </div>
+        <div style="margin: 20px 0px 0px 75px;width:auto">
         <button class=btn><a href="/ch1/">1</a></button>
         <button class=btn><a href="/ch2/">2</a></button>
         <button class=btn><a href="/ch3/">3</a></button><br>
@@ -48,13 +51,13 @@
         <button class=btn><a href="/ch7/">7</a></button>
         <button class=btn><a href="/ch8/">8</a></button>
         <button class=btn><a href="/ch9/">9</a></button><br>
-        <button style="margin:5px 0px 0px 33px"><a href="/ch0/">0</a></button>
+        <button style="margin:5px 0px 20px 33px"><a href="/ch0/">0</a></button>
         </div>
-        <div>
+        <div style="margin: 10px 0px 0px 60px;width:auto">
         <button class="netflix"> <a href="/netflix/">Netflix</a></button>
         <button class="youtube"> <a href="/youtube/">Youtube</a></button>
         </div>
-        <div>
+        <div style="margin: 10px 0px 0px 55px;width:auto">
         <button style="background: url(../static/play.png);width: 29px; height: 29px;"><a href="/play/">.</a></button>
         <button style="background: url(../static/pause.png);width: 29px; height: 29px;"><a href="/pause/">.</a></button>
         <button style="background: url(../static/rewind.png);width: 29px; height: 29px;"><a href="/rewind/">.</a></button>
