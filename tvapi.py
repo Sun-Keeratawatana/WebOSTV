@@ -24,12 +24,15 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('10.66.2.172').connect()
-            self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+            self.webos_client = connection('192.168.4.136').connect()
+            #self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+            self.volume = self.webos_client.get_audio_status().get("volume")
         except:
             sys.exit("Cannot connect to the tv")
+
+
         self.channel = ""
-        
+        self.displaychannel = ""
         self.isMute = self.webos_client.get_muted()
         
         
@@ -45,6 +48,10 @@ class webostv():
     def get_app(self):
         self.app = self.webos_client.get_current_app()
         return self.app
+
+    def update_channel(self, ch):
+        self.channel += ch
+        return self.channel
 
 # id:com.webos.app.livetv, netflix, doonung, lgtv-hbogoasia1, amazon, com.viu.tv, com.webos.app.notificationcenter, 
 # com.webos.app.remoteservice, com.webos.app.accessibility, com.webos.app.livemenu, com.webos.app.miracast
@@ -130,16 +137,15 @@ class webostv():
             if(channel["channelNumber"] == number):
                 return channel["channelId"]
 
-
     def channel_num_clicked(self, num):
-        print(num, end="clicked")
-        self.channel += str(num)
+        self.channel += num
         print(self.channel)
-        if len(self.channel) == 2:
+        if len(self.channel) >= 2:
             if(self.channel.startswith('0')):
-                self.channel = self.channel[-1]
+                self.channel = self.channel[1]
+            self.webos_client.set_channel(self.findChId(self.channel))
+            self.displaychannel = self.channel
             self.channel = ""
-            return self.webos_client.set_channel(self.findChId(self.channel))
         return
 
     

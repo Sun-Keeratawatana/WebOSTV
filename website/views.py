@@ -12,11 +12,12 @@ tv = webostv()
 def home():
   currentVol = tv.get_audio_vol()
   current_ch = tv.get_app()
+  current_chn = tv.displaychannel
   checkmute = webostv()
   if checkmute.isMute:
-    return render_template("home.html", current_volume=currentVol, Muted="Muted", current_input=current_ch)
+    return render_template("home.html", current_volume=currentVol, Muted="Muted", current_input=current_ch, current_channel=current_chn)
   else:
-    return render_template("home.html", current_volume=currentVol, current_input=current_ch)
+    return render_template("home.html", current_volume=currentVol, current_input=current_ch, current_channel=current_chn)
 
 
 @views.route('/vol-down/')
@@ -99,69 +100,59 @@ def channel_down():
 
 @views.route('/ch1/')
 def ch1_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(1)
+  tv.channel_num_clicked("1")
   return home()
 
 
 @views.route('/ch2/')
 def ch2_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(2)
+  tv.channel_num_clicked("2")
   return home()
 
 
 @views.route('/ch3/')
 def ch3_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(3)
+  tv.channel_num_clicked("3")
   return home()
 
 
 @views.route('/ch4/')
 def ch4_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(4)
+  tv.channel_num_clicked("4")
   return home()
 
 
 @views.route('/ch5/')
 def ch5_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(5)
+  tv.channel_num_clicked("5")
   return home()
 
 
 @views.route('/ch6/')
 def ch6_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(6)
+  tv.channel_num_clicked("6")
   return home()
 
 
 @views.route('/ch7/')
 def ch7_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(7)
+  tv.channel_num_clicked("7")
   return home()
 
 
 @views.route('/ch8/')
 def ch8_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(8)
+  tv.channel_num_clicked("8")
   return home()
 
 
 @views.route('/ch9/')
 def ch9_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(9)
+  tv.channel_num_clicked("9")
   return home()
 
 
 @views.route('/ch0/')
 def ch0_clicked():
-  tv.toCable()
-  tv.channel_num_clicked(0)
+  tv.channel_num_clicked("0")
   return home()
