@@ -1,20 +1,26 @@
 <!doctype html>
-
 <head>
     <title>Test</title> 
     <meta charset=utf-8> 
-    
-    <img src="static/audioUp.jpg" alt="audioUp">
-    <img src="static/audioDown.jpg" alt="audioDown">
-    <img src="static/audioMute.jpg" alt="audioMute">
-    <img src="static/netflix.png" alt="netflix">
-    <img src="static/youtube.jpg" alt="youtube">
-    <img src="static/power.png" alt="power">
-    <img src="static/play.png" alt="play">
-    <img src="static/pause.png" alt="pause">
-    <img src="static/rewind.png" alt="rewind">
-    <img src="static/ff.jpg" alt="ff">
-    <img src="static/input.png" alt="input">
+    <style>
+        .topbtn{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .ltbtn{
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+        .rtbtn{
+            float: right;
+            margin-right: 75%;
+            margin-top: 5px;
+        }
+        .btn{
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+    </style>
     
 </head>
     <body>
@@ -22,29 +28,36 @@
         <h3>Volume: {{current_volume}} {{Muted}}</h3>
         <h3>Apps: {{current_input}}</h3>
         <div>
-        <button style="background: url(static/audioDown.jpg)" > <a href="/vol-down/">Volume Down</a></button>
-        <button class="audioUp"> <a href="/vol-up/">Volume Up</a></button>
-        <button class="audioMute"> <a href="/mute/"> Mute</a></button>
+        <button style="background: url(../static/power.png);width: 40px; height: 40px;"> <a href="/power/">.</a></button>
+        <button class=rtbtn> <a href="/inputs/">Inputs</a></button><br>
+        <button class=ltbtn> <a href="/vol-up/">Volume Up</a></button>
+        <button class=rtbtn> <a href="/chup/">ch up</a></button><br>
+        <button class=ltbtn> <a href="/mute/"> Mute</a></button>
+        <img src="../static/audioUp.jpg" alt="audioUp">
+        <br>
+        <button class=ltbtn > <a href="/vol-down/">Volume Down</a></button>
+        <button class=rtbtn> <a href="/chdown/">ch down</a></button><br>
+        
+        </div>
+        <button class=btn><a href="/ch1/">1</a></button>
+        <button class=btn><a href="/ch2/">2</a></button>
+        <button class=btn><a href="/ch3/">3</a></button><br>
+        <button class=btn><a href="/ch4/">4</a></button>
+        <button class=btn><a href="/ch5/">5</a></button>
+        <button class=btn><a href="/ch6/">6</a></button><br>
+        <button class=btn><a href="/ch7/">7</a></button>
+        <button class=btn><a href="/ch8/">8</a></button>
+        <button class=btn><a href="/ch9/">9</a></button><br>
+        <button style="margin:5px 0px 0px 33px"><a href="/ch0/">0</a></button>
+        </div>
+        <div>
         <button class="netflix"> <a href="/netflix/">Netflix</a></button>
         <button class="youtube"> <a href="/youtube/">Youtube</a></button>
-        <button class="power"> <a href="/power/">Power</a></button>
-        <button class="play"> <a href="/play/">Play</a></button>
-        <button class="pause"> <a href="/pause/">Pause</a></button>
-        <button class="rewind"> <a href="/rewind/">Rewind</a></button>
-        <button class="ff"> <a href="/fast-forward/">Fast-forward</a></button>
-        <button class="input"> <a href="/inputs/">Inputs</a></button>
-        <button class="ch up"> <a href="/chup/">ch up</a></button>
-        <button class="ch down"> <a href="/chdown/">ch down</a></button>
         </div>
-        <button class="ch1"><a href="/ch1/">1</a></button>
-        <button class="ch2"><a href="/ch2/">2</a></button>
-        <button class="ch3"><a href="/ch3/">3</a></button>
-        <button class="ch4"><a href="/ch4/">4</a></button>
-        <button class="ch5"><a href="/ch5/">5</a></button>
-        <button class="ch6"><a href="/ch6/">6</a></button>
-        <button class="ch7"><a href="/ch7/">7</a></button>
-        <button class="ch8"><a href="/ch8/">8</a></button>
-        <button class="ch9"><a href="/ch9/">9</a></button>
-        <button class="ch0"><a href="/ch0/">0</a></button>
-        
+        <div>
+        <button style="background: url(../static/play.png);width: 29px; height: 29px;"><a href="/play/">.</a></button>
+        <button style="background: url(../static/pause.png);width: 29px; height: 29px;"><a href="/pause/">.</a></button>
+        <button style="background: url(../static/rewind.png);width: 29px; height: 29px;"><a href="/rewind/">.</a></button>
+        <button style="background: url(../static/ff.jpg);width: 29px; height: 29px;"><a href="/fast-forward/">.</a></button>
+        </div>
     </body>
