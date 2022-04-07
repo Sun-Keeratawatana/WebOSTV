@@ -24,9 +24,9 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('192.168.4.136').connect()
-            #self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
-            self.volume = self.webos_client.get_audio_status().get("volume")
+            self.webos_client = connection('10.66.2.172').connect()
+            self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
+            #self.volume = self.webos_client.get_audio_status().get("volume")
         except:
             sys.exit("Cannot connect to the tv")
 
@@ -34,7 +34,6 @@ class webostv():
         self.channel = ""
         self.displaychannel = ""
         self.isMute = self.webos_client.get_muted()
-        
         
         self.app = ""
         
