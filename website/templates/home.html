@@ -4,22 +4,36 @@
     <meta charset=utf-8> 
     <style>
         .textbox{
+            float: left;
+            border-style: solid;
             margin-left:5px;
-            background-color: cyan;
-            width: 235px;
+            margin-right: 5px;
+            margin-top: 50px;
+            text-align: center;
+            width: 650px;
             height: 110px;
         }
         .text{
-            margin-left:5px;
+            font-size:x-large;
             color: black;
+        }
+        .blank{
+            float: left;
+            width: 800px;
+            height: 30px;
+        }
+        .allbtn{
+            float: left;
+            width: 800px;
+            height: auto;
+            border-style: dotted;
         }
         .mutetext{
             color: red;
         }
         .remote{
-            background-color: grey;
             border-style: solid;
-            width: 255px;
+            width: 800px;
             min-height: 500px;
         }
         .powerbtn{
@@ -30,13 +44,58 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+        
         .volbox{
+            border-style: solid;
             margin-top: 15px;
+            width:250px;
+            float: left;
+        }
+        .voldis{
+            margin-left: 10px;
             width:auto;
+            float: left;
+        }
+        .volbtn{
+            width:auto;
+            float: right;
+            font-size: large;
+            margin-left: 40px;
+            margin-top: 5px;
+            min-width: 75px;
+        }
+        .appbox{
+            margin-top: 25px;
+            margin-left: 20px;
+            width:80px;
+            border-style: dotted;
+            float: left;
+        }
+        .appbtn{
+            font-size: large;
+            margin-top: 20px;
+            margin-right: 5px;
+            width: auto;
         }
         .chbox{
-            margin: 20px 0px 0px 75px;
-            width:auto;
+            margin-top: 20px;
+            margin-left: 20px;
+            width:120px;
+            float:left;
+            border-style: solid;
+        }
+        .chdis{
+            margin-top: 50px;
+            margin-left: 50px;
+            float:left;
+            border-style: solid;
+            height: 100px;
+        }
+        .chbtn{
+            margin-top: 20px;
+            float:left;
+            border-style: dotted;
+            width: 100px;
         }
         .topbtn{
             margin-top: 10px;
@@ -50,98 +109,130 @@
             min-width: 75px;
         }
         .rtbtn{
-            font-size: medium;
-            margin-left: 80px;
-            margin-top: 5px;
-            min-width: 75px;
+            margin-top: 30px;
+            font-size: large;
         }
         .btn{
-            font-size: medium;
-            margin-top: 5px;
+            font-size: large;
+            margin-top: 20px;
             margin-right: 5px;
+            width: auto;
         }
+        
         .zerobtn{
-            font-size: medium;
+            font-size: large;
             margin-top:5px;
             margin-bottom: 20px;
             margin-left: 38px;
         }
-        .appbox{
-            margin-top: 10px;
-            margin-left: 50px;
-            width:auto;
-        }
+        
         .playerbox{
+            float: left;
             margin-top: 10px;
-            margin-left: 60px;
-            width:auto;
+            width:100;
         }
         .playbtn{
             background: url(../static/play.png);
             width: 29px; 
             height: 29px;
+            margin-top: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
         .pausebtn{
             background: url(../static/pause.png);
             width: 29px; 
             height: 29px;
+            margin-top: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
         .rewindbtn{
             background: url(../static/rewind.png);
             width: 29px; 
             height: 29px;
+            margin-top: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
         .ffbtn{
             background: url(../static/ff.jpg);
             width: 29px; 
             height: 29px;
+            margin-top: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-bottom: 10px;
         }
     </style>
     
 </head>
     <body>
+
         <h1>LG TV remote-controller website</h1>
         <div class=remote>
             <button class=powerbtn> <a href="/power/">.</a></button>
-            <button class=rtbtn> <a href="/inputs/">Inputs</a></button><br>
-        <div class = textbox>
-        <h3 class=text>Volume: {{current_volume}} {{Muted}}</h3>
-        <h3 class=text>Apps: {{current_input}}</h3>
-        <h3 class=text>Channel: {{current_channel}}</h3>
-        </div>
-        <div class=volbox>
-        <button class=ltbtn> <a href="/vol-up/">Vol Up</a></button>
-        <button class=rtbtn> <a href="/chup/">Ch up</a></button><br>
-        <button class=ltbtn style="margin-left:84px"> <a href="/mute/"> Mute</a></button>
-        <br>
-        <button class=ltbtn > <a href="/vol-down/">Vol Down</a></button>
-        <button class=rtbtn style="margin-left: 70px;"> <a href="/chdown/">Ch down</a></button><br>
+            <div class = textbox>
+                <h3 class=text>{{current_input}}</h3>
+                <h3 class=text>{{current_channel}}</h3>
+            </div>
         
-        </div>
-        <div class = chbox>
-        <button class=btn><a href="/ch1/">1</a></button>
-        <button class=btn style="margin-left: 5px;"><a href="/ch2/">2</a></button>
-        <button class=btn><a href="/ch3/">3</a></button>
-        <br>
-        <button class=btn><a href="/ch4/">4</a></button>
-        <button class=btn><a href="/ch5/">5</a></button>
-        <button class=btn><a href="/ch6/">6</a></button>
-        <br>
-        <button class=btn><a href="/ch7/">7</a></button>
-        <button class=btn><a href="/ch8/">8</a></button>
-        <button class=btn><a href="/ch9/">9</a></button>
-        <br>
-        <button class = zerobtn><a href="/ch0/">0</a></button>
-        </div>
-        <div class = appbox>
-        <button class=btn> <a href="/netflix/">Netflix</a></button>
-        <button class=btn> <a href="/youtube/">Youtube</a></button>
-        </div>
-        <div class = playerbox>
-        <button class = playbtn><a href="/play/">.</a></button>
-        <button class = pausebtn><a href="/pause/">.</a></button>
-        <button class = rewindbtn><a href="/rewind/">.</a></button>
-        <button class = ffbtn><a href="/fast-forward/">.</a></button>
-        </div>
+            <div class = playerbox>
+                <button class = playbtn><a href="/play/">.</a></button>
+                <button class = pausebtn><a href="/pause/">.</a></button>
+                <br>
+                <button class = rewindbtn><a href="/rewind/">.</a></button>
+                <button class = ffbtn><a href="/fast-forward/">.</a></button>
+            </div>
+            <div class=blank>
+            </div>
+
+            <div class=allbtn>
+
+                <div class=volbox>
+                    <div class=voldis>
+                        <img src="../static/audioUp.jpg" alt="audioUp">
+                        <h3>{{current_volume}} {{Muted}}</h3>
+                    </div>
+                <button class="volbtn arrowup"> <a href="/vol-up/">Up</a></button>
+                <button class=volbtn> <a href="/mute/"> Mute</a></button>
+                <button class=volbtn > <a href="/vol-down/">Down</a></button>
+                </div>
+
+                <div class = appbox>
+                    <button class=appbtn> <a href="/inputs/">Inputs</a></button>
+                    <br>
+                    <button class=appbtn> <a href="/netflix/">Netflix</a></button>
+                    <br>
+                    <button class=appbtn> <a href="/youtube/">Youtube</a></button>
+                </div>
+
+                <div class = chbox>
+                    <button class=btn><a href="/ch1/">1</a></button>
+                    <button class=btn style="margin-left: 5px;"><a href="/ch2/">2</a></button>
+                    <button class=btn><a href="/ch3/">3</a></button>
+                    <br>
+                    <button class=btn><a href="/ch4/">4</a></button>
+                    <button class=btn><a href="/ch5/">5</a></button>
+                    <button class=btn><a href="/ch6/">6</a></button>
+                    <br>
+                    <button class=btn><a href="/ch7/">7</a></button>
+                    <button class=btn><a href="/ch8/">8</a></button>
+                    <button class=btn><a href="/ch9/">9</a></button>
+                    <br>
+                    <button class = zerobtn><a href="/ch0/">0</a></button>
+                </div>
+                <div class=chdis>
+                    <img src="../static/input.png">
+                </div>
+                <div class=chbtn>
+                    <button class=rtbtn> <a href="/chup/">Ch up</a></button><br>
+                    <button class=rtbtn> <a href="/chdown/">Ch down</a></button><br>
+                </div>
+                
+            </div>
         </div>
     </body>
