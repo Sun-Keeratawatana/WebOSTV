@@ -129,12 +129,7 @@ class webostv():
             return self.webos_client.launch_app(self.appid("hdmi3"))
         else:
             return self.toCable()
-
-
-    def findChId(self, number):
-        for channel in self.webos_client.get_channels():
-            if(channel["channelNumber"] == number):
-                return channel["channelId"]
+            
 
     def channel_num_clicked(self, num):
         self.channel += num
