@@ -18,6 +18,9 @@
         .text{
             font-size:x-large;
         }
+        .right{
+            float: right;
+        }
         .blank{
             float: left;
             width: 800px;
@@ -123,7 +126,7 @@
         
         .playerbox{
             float: left;
-            margin-top: 20px;
+            margin-top: 10px;
             width: 720px;
             align-items: center;
         }
@@ -209,9 +212,9 @@
                         <img src="../static/audio - Copy (2).png" alt="audioUp">
                         <h3 style="margin-left: 25px;">{{Muted}}</h3>
                     </div>
-                <button class="volbtn"> <a href="/vol-up/" class="arrow up"></a></button>
-                <button class=volbtn> <a href="/mute/"> Mute</a></button>
-                <button class=volbtn > <a href="/vol-down/" class="arrow down"></a></button>
+                <button class="right volbtn"> <a href="/vol-up/" class="arrow up"></a></button>
+                <button class="right volbtn"> <a href="/mute/"> Mute</a></button>
+                <button class="right volbtn"> <a href="/vol-down/" class="arrow down"></a></button>
                 </div>
 
                 <div class = appbox>
@@ -240,8 +243,8 @@
                     <img src="../static/input.png">
                 </div>
                 <div class=chbtn>
-                    <button class=volbtn> <a href="/chup/" class="arrow up"></a></button><br>
-                    <button class=volbtn> <a href="/chdown/" class="arrow down"></a></button><br>
+                    <button class="right volbtn"> <a href="/chup/" class="arrow up"></a></button><br>
+                    <button class="right volbtn"> <a href="/chdown/" class="arrow down"></a></button><br>
                 </div>
                 
             </div>
