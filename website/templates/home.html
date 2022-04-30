@@ -47,6 +47,11 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+        .cur_vol{
+            font-size: xx-large;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
         .volbox{
             border-style: solid;
             margin-top: 15px;
@@ -59,8 +64,6 @@
             float: left;
         }
         .volbtn{
-            width:auto;
-            float: right;
             font-size: large;
             margin-top: 27px;
             margin-right: 30px;
@@ -135,8 +138,8 @@
             width: 29px; 
             height: 29px;
             margin-top: 10px;
-            margin-left: 30px;
-            margin-right: 30px;
+            margin-left: 165px;
+            margin-right: 60px;
             margin-bottom: 10px;
         }
         .pausebtn{
@@ -145,7 +148,7 @@
             height: 29px;
             margin-top: 10px;
             margin-left: 30px;
-            margin-right: 30px;
+            margin-right: 60px;
             margin-bottom: 10px;
         }
         .rewindbtn{
@@ -154,7 +157,7 @@
             height: 29px;
             margin-top: 10px;
             margin-left: 30px;
-            margin-right: 30px;
+            margin-right: 60px;
             margin-bottom: 10px;
         }
         .ffbtn{
@@ -208,12 +211,16 @@
 
                 <div class=volbox>
                     <div class=voldis>
-                        <h2 style="margin-left: 40px;">{{current_volume}}</h2>
                         <img src="../static/audio - Copy (2).png" alt="audioUp">
-                        <h3 style="margin-left: 25px;">{{Muted}}</h3>
+                        <button style="margin-left: 40px; font-size: large;"><a href="/mute/">Mute</a></button>
+                        
                     </div>
+
                 <button class="right volbtn"> <a href="/vol-up/" class="arrow up"></a></button>
-                <button class="right volbtn"> <a href="/mute/"> Mute</a></button>
+                
+                <h2 class="right cur_vol">{{current_volume}}</h2>
+                <h3 class="right cur_vol" style="margin-left: 25px;">{{Muted}}</h3>
+                
                 <button class="right volbtn"> <a href="/vol-down/" class="arrow down"></a></button>
                 </div>
 
