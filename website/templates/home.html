@@ -8,11 +8,11 @@
             border-style: solid;
             margin-left:5px;
             margin-right: 5px;
-            margin-top: 50px;
+            margin-top: 30px;
             text-align: center;
-            width: 550px;
+            width: 715px;
             height: 110px;
-            background-color: antiquewhite;
+            background-color: white;
             border-color: antiquewhite;
         }
         .text{
@@ -33,18 +33,17 @@
         }
         .remote{
             border-style: solid;
-            width: 750px;
+            width: 730px;
             min-height: 500px;
         }
         .powerbtn{
             background: url(../static/power.png);
             width: 40px; 
             height: 40px; 
-            margin-left: 20px;
+            margin-left: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
         }
-        
         .volbox{
             border-style: solid;
             margin-top: 15px;
@@ -124,16 +123,17 @@
         
         .playerbox{
             float: left;
-            margin-top: 60px;
-            width:100;
+            margin-top: 20px;
+            width: 720px;
+            align-items: center;
         }
         .playbtn{
             background: url(../static/play.png);
             width: 29px; 
             height: 29px;
             margin-top: 10px;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-left: 30px;
+            margin-right: 30px;
             margin-bottom: 10px;
         }
         .pausebtn{
@@ -141,8 +141,8 @@
             width: 29px; 
             height: 29px;
             margin-top: 10px;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-left: 30px;
+            margin-right: 30px;
             margin-bottom: 10px;
         }
         .rewindbtn{
@@ -150,8 +150,8 @@
             width: 29px; 
             height: 29px;
             margin-top: 10px;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-left: 30px;
+            margin-right: 30px;
             margin-bottom: 10px;
         }
         .ffbtn{
@@ -159,9 +159,23 @@
             width: 29px; 
             height: 29px;
             margin-top: 10px;
-            margin-left: 15px;
-            margin-right: 15px;
+            margin-left: 30px;
+            margin-right: 30px;
             margin-bottom: 10px;
+        }
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
         }
     </style>
     
@@ -171,15 +185,16 @@
         <h1>LG TV remote-controller website</h1>
         <div class=remote>
             <button class=powerbtn> <a href="/power/">.</a></button>
+            <button class=appbtn style=" margin-top:15px; float: right;"> <a href="/inputs/">Inputs</a></button>
             <div class = textbox>
                 <h3 class=text>{{current_input}}</h3>
                 <h3 class=text>{{current_channel}}</h3>
+
             </div>
         
             <div class = playerbox>
                 <button class = playbtn><a href="/play/">.</a></button>
                 <button class = pausebtn><a href="/pause/">.</a></button>
-                <br>
                 <button class = rewindbtn><a href="/rewind/">.</a></button>
                 <button class = ffbtn><a href="/fast-forward/">.</a></button>
             </div>
@@ -194,13 +209,12 @@
                         <img src="../static/audio - Copy (2).png" alt="audioUp">
                         <h3 style="margin-left: 25px;">{{Muted}}</h3>
                     </div>
-                <button class="volbtn arrowup"> <a href="/vol-up/">Up</a></button>
+                <button class="volbtn"> <a href="/vol-up/" class="arrow up"></a></button>
                 <button class=volbtn> <a href="/mute/"> Mute</a></button>
-                <button class=volbtn > <a href="/vol-down/">Down</a></button>
+                <button class=volbtn > <a href="/vol-down/" class="arrow down"></a></button>
                 </div>
 
                 <div class = appbox>
-                    <button class=appbtn> <a href="/inputs/">Inputs</a></button>
                     <br>
                     <button class=appbtn> <a href="/netflix/">Netflix</a></button>
                     <br>
@@ -226,8 +240,8 @@
                     <img src="../static/input.png">
                 </div>
                 <div class=chbtn>
-                    <button class=rtbtn> <a href="/chup/">Ch up</a></button><br>
-                    <button class=rtbtn> <a href="/chdown/">Ch down</a></button><br>
+                    <button class=volbtn> <a href="/chup/" class="arrow up"></a></button><br>
+                    <button class=volbtn> <a href="/chdown/" class="arrow down"></a></button><br>
                 </div>
                 
             </div>

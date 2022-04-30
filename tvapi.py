@@ -24,7 +24,7 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('10.66.2.172').connect()
+            self.webos_client = connection('192.168.1.108').connect()
             #self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
             self.volume = self.webos_client.get_audio_status().get("volume")
         except:
@@ -182,12 +182,16 @@ class webostv():
     def vol_up_clicked(self):
         print("vol_up clicked")
         self.volume += 1
+        if self.volume >= 100:
+            self.volume = 100
         return self.webos_client.volume_up()
 
 
     def vol_down_clicked(self):
         print("vol_down clicked")
         self.volume -= 1
+        if self.volume <= 0:
+            self.volume = 0
         return self.webos_client.volume_down()
 
 

@@ -12,6 +12,10 @@ tv = webostv()
 def home():
   currentVol = tv.get_audio_vol()
   current_ch = tv.get_app()
+  if "com.webos.app." in current_ch:
+    current_ch = current_ch[14:]
+  elif "youtube" in current_ch:
+    current_ch = "youtube" 
   current_chn = tv.displaychannel
   checkmute = webostv()
   if checkmute.isMute:
