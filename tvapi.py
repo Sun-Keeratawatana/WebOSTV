@@ -2,7 +2,7 @@ from pylgtv import WebOsClient
 import sys
 
 class connection(object):
-    def __init__(self, ip, port=3000, key=None, timeout = 3):
+    def __init__(self, ip, port=3000, key=None, timeout = 5):
         self.ip = ip
         self.port = port
         self.key = key
@@ -24,7 +24,7 @@ class connection(object):
 class webostv():
     def __init__(self):
         try:
-            self.webos_client = connection('192.168.1.108').connect()
+            self.webos_client = connection("10.66.2.172").connect()
             #self.volume = self.webos_client.get_audio_status().get("volumeStatus")["volume"]
             self.volume = self.webos_client.get_audio_status().get("volume")
         except:

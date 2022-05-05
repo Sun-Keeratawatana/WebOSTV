@@ -15,11 +15,11 @@ def home():
   if "com.webos.app." in current_ch:
     current_ch = current_ch[14:]
   elif "youtube" in current_ch:
-    current_ch = "youtube" 
+    current_ch = "youtube"
   current_chn = tv.displaychannel
   checkmute = webostv()
   if checkmute.isMute:
-    return render_template("home.html", current_volume=currentVol, Muted="Muted", current_input=current_ch, current_channel=current_chn)
+    return render_template("home.html", current_volume="Muted", current_input=current_ch, current_channel=current_chn)
   else:
     return render_template("home.html", current_volume=currentVol, current_input=current_ch, current_channel=current_chn)
 
